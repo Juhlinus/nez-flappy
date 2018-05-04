@@ -5,6 +5,8 @@ namespace FlappyFlop
 {
     public class Game1 : Core
     {
+        public static int designHeight = 288;
+        public static int designWidth = 512;
         public Game1() { }
 
         protected override void Initialize()
@@ -13,7 +15,7 @@ namespace FlappyFlop
 
             Nez.Console.DebugConsole.consoleKey = Microsoft.Xna.Framework.Input.Keys.F2;
 
-            setDefaultDesignResolution(512, 288, SceneResolutionPolicy.BestFit);
+            setDefaultDesignResolution(designWidth, designHeight, SceneResolutionPolicy.ExactFit);
 
             scene = new Scenes.Level();
         }
