@@ -10,11 +10,14 @@ namespace FlappyFlop.Scenes
 
             addRenderer(new DefaultRenderer());
 
+            // Background
             addEntity(new Entities.Background());
             addEntity(new Entities.Background(firstPlayer: false));
-
             addEntity(new Entities.Background(isGround: true));
             addEntity(new Entities.Background(firstPlayer: false, isGround: true));
+
+            // Player
+            addEntity(new Entities.Player());
         }
     }
 }

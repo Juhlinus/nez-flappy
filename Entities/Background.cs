@@ -16,6 +16,9 @@ namespace FlappyFlop.Entities
         private bool _isGround;
 
         private float _halfBgHeight;
+        
+        //Inspector
+        private bool _isToggled = false;
         public Background(bool firstPlayer = true, bool isGround = false) : base(firstPlayer ? "first_" + (isGround ? "ground" : "background") : "second_" + (isGround ? "ground" : "background")) 
         {
             _firstPlayer = firstPlayer;
@@ -51,6 +54,23 @@ namespace FlappyFlop.Entities
             }
 
             transform.position += -((_isGround ? _speed / 2 : _speed) * 5) * Time.deltaTime;
+        }
+
+        [InspectorCallable]
+        public void BackgroundStop()
+        {
+            var entities = scene.entities;
+            Vector2 speed = Vector2.Zero;
+
+            if (_isToggled)
+                speed = new Vector2(20f, 0);
+
+            foreach (Background background in entities.entitiesOfType<Background>())
+            {
+                background._speed = speed; 
+            }
+
+            _isToggled = !_isToggled;
         }
     }
 }
