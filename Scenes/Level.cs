@@ -12,9 +12,9 @@ namespace FlappyFlop.Scenes
 
             // Background
             addEntity(new Entities.Background());
-            addEntity(new Entities.Background(firstPlayer: false));
+            addEntity(new Entities.Background(firstBackground: false));
             addEntity(new Entities.Background(isGround: true));
-            addEntity(new Entities.Background(firstPlayer: false, isGround: true));
+            addEntity(new Entities.Background(firstBackground: false, isGround: true));
 
             // Player
             addEntity(new Entities.Player());

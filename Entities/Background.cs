@@ -12,16 +12,16 @@ namespace FlappyFlop.Entities
         private Vector2 _endPosition;
 
         private Sprite _backgroundSprite;
-        private bool _firstPlayer;
+        private bool _firstBackground;
         private bool _isGround;
 
         private float _halfBgHeight;
         
         //Inspector
         private bool _isToggled = false;
-        public Background(bool firstPlayer = true, bool isGround = false) : base(firstPlayer ? "first_" + (isGround ? "ground" : "background") : "second_" + (isGround ? "ground" : "background")) 
+        public Background(bool firstBackground = true, bool isGround = false) : base(firstBackground ? "first_" + (isGround ? "ground" : "background") : "second_" + (isGround ? "ground" : "background")) 
         {
-            _firstPlayer = firstPlayer;
+            _firstBackground = firstBackground;
             _isGround = isGround;
         }
 
@@ -29,12 +29,15 @@ namespace FlappyFlop.Entities
         {
             base.onAddedToScene();
 
+            if (_isGround)
+                addComponent(new BoxCollider());
+
             _backgroundSprite = addComponent(new Sprite(scene.content.Load<Texture2D>(_isGround ? "ground" : "background")));
             _halfBgHeight = _backgroundSprite.height / 2;
 
             _endPosition = new Vector2(_backgroundSprite.width + (_backgroundSprite.width / 2), _isGround ? Game1.designHeight - (_halfBgHeight / 2) : _halfBgHeight);
 
-            if (_firstPlayer)
+            if (_firstBackground)
             {
                 transform.position = new Vector2((_backgroundSprite.width / 2), _isGround ? Game1.designHeight - (_halfBgHeight / 2) : _halfBgHeight);
             }
